@@ -1,12 +1,12 @@
 import re, csv, subprocess, tempfile
 from pathlib import Path
 import streamlit as st
-import whisper
-from st_audiorec import st_audiorec
+# import whisper
+# from st_audiorec import st_audiorec
 
 # --- CONFIG ---
 LEXICON_FILE = Path("lexicon.csv")
-FS_DIR = Path("clips/fingerspelling")
+FS_DIR = Path("demo")   # hem kelime hem harf videoları burada
 OUT_FILE = "asl_output.mp4"
 
 # --- Load lexicon ---
@@ -74,7 +74,7 @@ def tokens_to_clips(tokens):
     clips = []
     for tag, val in tokens:
         if tag == "WORD":
-            clips.append(LEXICON[val])
+            clips.append(LEXICON[val])  # demo/ içindeki video
         elif tag == "FS":
             for letter in val:
                 p = FS_DIR / f"{letter}.mp4"
@@ -99,26 +99,9 @@ def concat_videos(paths, out_path=OUT_FILE):
 
 # --- Streamlit UI ---
 st.set_page_config(page_title="Speech → Sign Language", layout="centered")
-st.title("Speech → ASL Translation")
+st.title("Speech → ASL Translation (Demo)")
 
-option = st.radio("Input type:", ["Text", "Speech"])
-
-if option == "Text":
-    example = "Hello, my name is Talya. I need help at the hospital."
-    text = st.text_input("Type an English sentence:", example)
-
-elif option == "Speech":
-    st.write("🎤 Record your voice below:")
-    wav_audio_data = st_audiorec()
-    text = ""
-    if wav_audio_data is not None:
-        model = whisper.load_model("base")
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
-            f.write(wav_audio_data)
-            wav_path = f.name
-        result = model.transcribe(wav_path, language="en")
-        text = result["text"]
-        st.success(f"Recognized text: {text}")
+text = st.text_input("Type an English sentence:", "Hello, my name is Talya")
 
 if text and st.button("Translate to ASL"):
     tokens = text_to_tokens(text)

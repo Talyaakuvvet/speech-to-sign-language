@@ -9,6 +9,9 @@ clips/
 lexicon.csv
 *.json
 .DS_Store
+fingerspelling/
+wlasl/
+clips/
 
 # Ignore large video datasets
 clips/ASL/videos/
