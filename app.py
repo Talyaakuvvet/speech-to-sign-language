@@ -5,7 +5,7 @@ import streamlit as st
 # from st_audiorec import st_audiorec
 import requests, zipfile, io, os
 
-DEMO_URL = "https://drive.google.com/drive/folders/1YBmBPIcq5Np20IB7FBkI_oEBMq4UWPzT?usp=drive_link"
+DEMO_URL = "https://drive.google.com/uc?export=download&id=1AbCdEfGhIjKlMnOp"
 # Buradaki DRIVE_FILE_ID kısmını kendi Google Drive paylaşım linkinden alacaksın
 
 def ensure_demo_videos():
