@@ -5,19 +5,13 @@ import streamlit as st
 # from st_audiorec import st_audiorec
 import requests, zipfile, io, os
 import gdown
-
-DEMO_URL = "https://drive.google.com/uc?export=download&id=1AbCdEfGhIjKlMnOp"
-# Buradaki DRIVE_FILE_ID kısmını kendi Google Drive paylaşım linkinden alacaksın
+import os, zipfile, gdown
 
 def ensure_demo_videos():
     if not os.path.exists("demo"):
         os.makedirs("demo", exist_ok=True)
-        url = "https://drive.google.com/uc?export=download&id=1AbCdEfGhIjKlMnOp"  # buraya kendi ID'ni koy
-        output = "demo.zip"
-        gdown.download(url, output, quiet=False)
-        with zipfile.ZipFile(output, "r") as z:
-            z.extractall("demo")
-
+        url = "https://drive.google.com/drive/folders/1YBmBPIcq5Np20IB7FBkI_oEBMq4UWPzT?usp=sharing"  # senin klasör linkin
+        gdown.download_folder(url, output="demo", quiet=False)
 
 # --- CONFIG ---
 LEXICON_FILE = Path("lexicon.csv")
