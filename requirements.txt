@@ -1,6 +1,7 @@
-streamlit
+streamlit==1.28.0
 ffmpeg-python
-transformers==4.43.3
-torch
-sentencepiece
 openai-whisper
+transformers
+torch
+pandas
+
