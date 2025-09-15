@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.mp4
+*.wav
+*.m4a
+clips/
+lexicon.csv
+*.json
+.DS_Store
+
+# Ignore large video datasets
+clips/ASL/videos/
+*.mp4
+*.mov
+
+# Python cache
+__pycache__/
+*.pyc
+
+# MacOS system files
+.DS_Store
+

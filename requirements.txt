@@ -1,0 +1,6 @@
+streamlit
+ffmpeg-python
+openai-whisper
+st-audiorec
+transformers
+sentencepiece
