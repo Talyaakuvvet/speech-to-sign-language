@@ -3,11 +3,28 @@ from pathlib import Path
 import streamlit as st
 # import whisper
 # from st_audiorec import st_audiorec
+import requests, zipfile, io, os
+
+DEMO_URL = "https://drive.google.com/drive/folders/1YBmBPIcq5Np20IB7FBkI_oEBMq4UWPzT?usp=drive_link"
+# Buradaki DRIVE_FILE_ID kısmını kendi Google Drive paylaşım linkinden alacaksın
+
+def ensure_demo_videos():
+    if not os.path.exists("demo"):
+        os.makedirs("demo", exist_ok=True)
+        st.info("Downloading demo videos, please wait...")
+
+        r = requests.get(DEMO_URL)
+        z = zipfile.ZipFile(io.BytesIO(r.content))
+        z.extractall("demo")
+        st.success("Demo videos ready!")
+
 
 # --- CONFIG ---
 LEXICON_FILE = Path("lexicon.csv")
 FS_DIR = Path("demo")   # hem kelime hem harf videoları burada
 OUT_FILE = "asl_output.mp4"
+
+ensure_demo_videos()
 
 # --- Load lexicon ---
 def load_lexicon():
