@@ -4,6 +4,7 @@ import streamlit as st
 # import whisper
 # from st_audiorec import st_audiorec
 import requests, zipfile, io, os
+import gdown
 
 DEMO_URL = "https://drive.google.com/uc?export=download&id=1AbCdEfGhIjKlMnOp"
 # Buradaki DRIVE_FILE_ID kısmını kendi Google Drive paylaşım linkinden alacaksın
@@ -11,12 +12,11 @@ DEMO_URL = "https://drive.google.com/uc?export=download&id=1AbCdEfGhIjKlMnOp"
 def ensure_demo_videos():
     if not os.path.exists("demo"):
         os.makedirs("demo", exist_ok=True)
-        st.info("Downloading demo videos, please wait...")
-
-        r = requests.get(DEMO_URL)
-        z = zipfile.ZipFile(io.BytesIO(r.content))
-        z.extractall("demo")
-        st.success("Demo videos ready!")
+        url = "https://drive.google.com/uc?export=download&id=1AbCdEfGhIjKlMnOp"  # buraya kendi ID'ni koy
+        output = "demo.zip"
+        gdown.download(url, output, quiet=False)
+        with zipfile.ZipFile(output, "r") as z:
+            z.extractall("demo")
 
 
 # --- CONFIG ---
