@@ -1,8 +1,6 @@
 streamlit
 ffmpeg-python
-openai-whisper
-st-audiorec
-transformers
-sentencepiece
 transformers==4.43.3
 torch
+sentencepiece
+openai-whisper
