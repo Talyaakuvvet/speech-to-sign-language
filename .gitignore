@@ -2,21 +2,18 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.mp4
 *.wav
 *.m4a
 clips/
-lexicon.csv
 *.json
 .DS_Store
 fingerspelling/
 wlasl/
 clips/
-
+*.mp4
+!demo/*.mp4
 # Ignore large video datasets
 clips/ASL/videos/
-*.mp4
-*.mov
 
 # Python cache
 __pycache__/
@@ -24,4 +21,3 @@ __pycache__/
 
 # MacOS system files
 .DS_Store
-
