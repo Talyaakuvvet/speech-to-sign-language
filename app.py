@@ -13,9 +13,13 @@ OUT_FILE = "asl_output.mp4"
 def load_lexicon():
     lex = {}
     with open(LEXICON_FILE, newline='', encoding="utf-8") as f:
-        for word, path in csv.reader(f):
+        for row in csv.reader(f):
+            if len(row) < 2:   # boş satırları atla
+                continue
+            word, path = row
             lex[word.strip().upper()] = path.strip()
     return lex
+
 
 LEXICON = load_lexicon()
 
